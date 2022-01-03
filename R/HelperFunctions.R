@@ -19,12 +19,6 @@
 #'
 #' @return Creates a project and folders in a directory if a RStudio project is not present
 #'
-#' @examples
-#' \donttest{
-#'
-#'      CreateProjectFiles("/path/to/directory")
-#'
-#' }
 #' @export
 #' 
 CreateProjectFiles <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
@@ -131,11 +125,11 @@ PackageCheck <- function(USE_THESE_PACKAGES,
 
     FUNCTION_OUTPUT <- list()
 
-    new_packages <- USE_THESE_PACKAGES[!(USE_THESE_PACKAGES %in% installed.packages()[,"Package"])]
+    new_packages <- USE_THESE_PACKAGES[!(USE_THESE_PACKAGES %in% utils::installed.packages()[,"Package"])]
 
     if(length(new_packages)) {
           
-        install.packages(new_packages)
+        utils::install.packages(new_packages)
 
         if(DEBUG) message("PackageCheck: Importing all packages  \n")
 
@@ -151,8 +145,9 @@ PackageCheck <- function(USE_THESE_PACKAGES,
 
     if(DEBUG) message("PackageCheck: Collecting final output  \n")
 
-    results <- data.table(package_name = names(sapply(USE_THESE_PACKAGES, require, character.only = TRUE)),
-                          loaded = sapply(USE_THESE_PACKAGES, require, character.only = TRUE))
+    results <- data.table::data.table(
+                     package_name = names(sapply(USE_THESE_PACKAGES, require, character.only = TRUE)),
+                     loaded = sapply(USE_THESE_PACKAGES, require, character.only = TRUE))
 
     FUNCTION_OUTPUT[["USE_THESE_PACKAGES"]] <- USE_THESE_PACKAGES
     FUNCTION_OUTPUT[["NEW_PACKAGES_TO_INSTALL"]] <- new_packages
