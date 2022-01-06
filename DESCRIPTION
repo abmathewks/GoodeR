@@ -1,6 +1,6 @@
 Package: GoodeR
 Title: Automate Common Data Science Tasks 
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Abraham",
            family = "Mathew",
@@ -8,12 +8,16 @@ Authors@R:
            email = "mathewanalytics@gmail.com")
 Maintainer: Abraham Mathew <mathewanalytics@gmail.com>
 Description: R package for the automation of machine learning, forecasting, feature engineering, model evaluation, model interpretation, and other tasks. Built using data.table for all tabular data-related tasks.
-License: MIT + file LICENSE
+License: MPL-2.0 | file LICENSE
 URL: https://github.com/abmathewks/GoodeR
 BugReports: https://github.com/abmathewks/GoodeR/issues
 Depends: R (>= 3.5.0)
 Imports: data.table, lubridate, usethis 
-Suggests: knitr, rmarkdown, gridExtra 
+Suggests: 
+    knitr,
+    rmarkdown,
+    gridExtra,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Contact: Abraham Mathew
 Encoding: UTF-8
@@ -25,4 +29,4 @@ RoxygenNote: 7.1.1
 SystemRequirements: Java (>= 7.0)
 Author: Abraham Mathew [aut, cre, ctb] 
 ByteCompile: TRUE
-
+Config/testthat/edition: 3
