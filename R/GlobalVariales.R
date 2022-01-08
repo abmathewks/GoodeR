@@ -1,5 +1,7 @@
 utils::globalVariables(
   names = c(
-    "install.packages"
+    "install.packages",
+    "%chin%",
+    ".N"
   )
 )
