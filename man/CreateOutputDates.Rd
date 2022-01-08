@@ -37,6 +37,7 @@ Other Data Preparation:
 \code{\link{AddDays}()},
 \code{\link{AddMonths}()},
 \code{\link{AddWeeks}()},
+\code{\link{FakeDataGenerator}()},
 \code{\link{RemoveSpecialChars}()}
 }
 \author{

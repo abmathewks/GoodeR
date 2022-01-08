@@ -31,6 +31,7 @@ Other Data Preparation:
 \code{\link{AddDays}()},
 \code{\link{AddMonths}()},
 \code{\link{CreateOutputDates}()},
+\code{\link{FakeDataGenerator}()},
 \code{\link{RemoveSpecialChars}()}
 }
 \author{
