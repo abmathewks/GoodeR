@@ -22,8 +22,7 @@
 #' @examples
 #' \dontrun{
 #' 
-#' data <- RemixAutoML::FakeDataGenerator(
-#'                            NUM_ROWS = 10000,
+#' data <- FakeDataGenerator(NUM_ROWS = 10000,
 #'                            DATE_COLS = 1,
 #'                            NUMERIC_COLS = 3,
 #'                            CHARACTER_COLS = 1,
