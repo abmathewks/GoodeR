@@ -29,9 +29,13 @@ This function will take a single date value and add N weeks to it.
 \seealso{
 Other Data Preparation: 
 \code{\link{AddDays}()},
+\code{\link{AddMissingDates}()},
 \code{\link{AddMonths}()},
+\code{\link{AggregateTimeSeriesData}()},
+\code{\link{CheckForMissingDates}()},
 \code{\link{CreateOutputDates}()},
 \code{\link{FakeDataGenerator}()},
+\code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}
 }
 \author{

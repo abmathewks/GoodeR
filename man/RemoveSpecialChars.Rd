@@ -29,10 +29,14 @@ This function will take a string and clean it
 \seealso{
 Other Data Preparation: 
 \code{\link{AddDays}()},
+\code{\link{AddMissingDates}()},
 \code{\link{AddMonths}()},
 \code{\link{AddWeeks}()},
+\code{\link{AggregateTimeSeriesData}()},
+\code{\link{CheckForMissingDates}()},
 \code{\link{CreateOutputDates}()},
-\code{\link{FakeDataGenerator}()}
+\code{\link{FakeDataGenerator}()},
+\code{\link{FlattenLongData}()}
 }
 \author{
 Abraham Mathew

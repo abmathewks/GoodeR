@@ -29,9 +29,13 @@ This function will take a single date value and add N months to it.
 \seealso{
 Other Data Preparation: 
 \code{\link{AddDays}()},
+\code{\link{AddMissingDates}()},
 \code{\link{AddWeeks}()},
+\code{\link{AggregateTimeSeriesData}()},
+\code{\link{CheckForMissingDates}()},
 \code{\link{CreateOutputDates}()},
 \code{\link{FakeDataGenerator}()},
+\code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}
 }
 \author{

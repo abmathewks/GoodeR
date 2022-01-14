@@ -35,9 +35,13 @@ This function will collect date values for the output of the forecasting output
 \seealso{
 Other Data Preparation: 
 \code{\link{AddDays}()},
+\code{\link{AddMissingDates}()},
 \code{\link{AddMonths}()},
 \code{\link{AddWeeks}()},
+\code{\link{AggregateTimeSeriesData}()},
+\code{\link{CheckForMissingDates}()},
 \code{\link{FakeDataGenerator}()},
+\code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}
 }
 \author{
