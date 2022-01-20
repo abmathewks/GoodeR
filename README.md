@@ -18,7 +18,9 @@
 - [Project Preparation](#project-preparation)
 - [Data Preparation](#data-preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
-- 
+- [Time Series Forecasting](#time-series-forecasting)
+- [Machine Learning](#machine-learning)
+- [Model Evaluation](#model-evaluation)
 
 
 
