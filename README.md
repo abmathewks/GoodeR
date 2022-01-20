@@ -15,7 +15,7 @@
 
 # Contents
 
-- [Project Preparation](#project-preparation)
+- [Project Initialization](#project-initialization)
 - [Data Preparation](#data-preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Time Series Forecasting](#time-series-forecasting)
