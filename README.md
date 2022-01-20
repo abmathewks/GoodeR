@@ -1,9 +1,9 @@
 
-<p align="center">
-  <img width="400" src="https://github.com/abmathewks/GoodeR/blob/main/images/Logo.png">
+<p align = "center">
+  <img width = "400" src = "https://github.com/abmathewks/GoodeR/blob/main/images/Logo.png">
 </p>
 
-<p align="center">
+<p align = "center">
   The GoodeR package contains a variety of functions that streamline common tasks performed by data scientists and
   other analytics professionals who use the R programming language. From data exploration to model evaluation, this 
   package offers a set of functions that will simplify your work and construct baseline models quicker. GoodeR has 
