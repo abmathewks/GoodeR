@@ -1,6 +1,6 @@
 
 <p align = "center">
-  <img width = "400" src = "https://github.com/abmathewks/GoodeR/blob/main/images/Logo.png">
+  <img width = "500" src = "https://github.com/abmathewks/GoodeR/blob/main/images/Logo.png">
 </p>
 
 <p align = "center">
