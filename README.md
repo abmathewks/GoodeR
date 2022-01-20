@@ -18,6 +18,7 @@
 - [Project Initialization](#project-initialization)
 - [Data Preparation](#data-preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Statistical Modeling](#statistical-modeling)
 - [Time Series Forecasting](#time-series-forecasting)
 - [Machine Learning](#machine-learning)
 - [Model Evaluation](#model-evaluation)
