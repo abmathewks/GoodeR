@@ -16,6 +16,9 @@
 # Contents
 
 - [Project Preparation](#project-preparation)
+- [Data Preparation](#data-preparation)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+- 
 
 
 
