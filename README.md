@@ -1,2 +1,7 @@
 
-<img src='https://github.com/abmathewks/GoodeR/blob/main/images/Logo.png' align='center' width='400' />
+<p align="center">
+  <img width="500" src="https://github.com/abmathewks/GoodeR/blob/main/images/Logo.png">
+</p>
+
+
+
