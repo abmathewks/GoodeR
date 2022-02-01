@@ -16,6 +16,7 @@ utils::globalVariables(
     ":=",
     "is.data.table",
     ".SD",
+    ".I",
     ".",
     "uniqueN",
     "missing_dates",
@@ -40,9 +41,20 @@ utils::globalVariables(
     "is_other_holiday_day",
     "is_weekend",
     "set",
-    "shift"
+    "shift",
+    "ID",
+    "lm",
+    "mod_formula",
+    "FULL_FORMULA",
+    "RSQUARED",
+    "ADJ_RSQUARED",
+    "MSE",
+    "RMSE",
+    "fitted"
         
   )
 )
 
 
+
+  

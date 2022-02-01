@@ -17,12 +17,6 @@
 #'
 #' @return A single numeric value
 #' 
-#' @examples
-#' \donttest{
-#' 
-#'     GoodeR::rmse(actual, predicted)
-#' 
-#' }
 #' @export
 #' 
 rmse <- function(actual, predicted){
@@ -46,12 +40,6 @@ rmse <- function(actual, predicted){
 #'
 #' @return A single numeric value
 #' 
-#' @examples
-#' \donttest{
-#' 
-#'     GoodeR::mae(actual, predicted)
-#' 
-#' }
 #' @export
 #' 
 mae <- function(actual, predicted){
@@ -76,29 +64,16 @@ mae <- function(actual, predicted){
 #'
 #' @param USE_THESE_FORMULAS A list of formulas 
 #' @param MODEL_DATA The column names containing character values that need to be encoded
-#' @param DATA_DIMENSION Remove the original character variable
 #' @param DATE_COLUMN Drop any levels that are missing (should be FALSE)
 #' @param TARGET_COLUMN Drop any levels that are missing (should be FALSE)
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #'
 #' @return returns the originak data table with all the new features appended to the dataset
 #' 
-#' @examples
-#' \donttest{
-#' 
-#'     GoodeR::RunAllModels(USE_THESE_FORMULAS = all_formulas,
-#'                         MODEL_DATA = model_data,
-#'                         DATA_DIMENSION = dim_name,
-#'                         DATE_COLUMN = "date_ymd",
-#'                         TARGET_COLUMN = "visits",
-#'                         DEBUG = TRUE)
-#' 
-#' }
 #' @export
 #'
-RunAllModels <- function(USE_THESE_FORMULAS = all_formulas,
-                         MODEL_DATA = model_data,
-                         DATA_DIMENSION = dim_name,
+RunAllModels <- function(USE_THESE_FORMULAS,
+                         MODEL_DATA,
                          DATE_COLUMN = "date_ymd",
                          TARGET_COLUMN = "visits",
                          DEBUG = TRUE){
@@ -130,26 +105,25 @@ RunAllModels <- function(USE_THESE_FORMULAS = all_formulas,
         cols <- names(MOD_RESULTS_DT)[2:ncol(MOD_RESULTS_DT)]
         MOD_RESULTS_DT[ ,(cols) := round(.SD, 3), .SDcols = cols]
         MOD_RESULTS_DT[, mod_formula := each_formula]
-        MOD_RESULTS_DT[, dimension_name := DATA_DIMENSION]
+        # MOD_RESULTS_DT[, dimension_name := DATA_DIMENSION]
         # MOD_RESULTS_DT
         
-        MODEL_EVAL_DT <- data.table(FULL_FORMULA = each_formula)
-        MODEL_EVAL_DT[, c("TARGET", "PREDICTORS") := tstrsplit(FULL_FORMULA, "~", fixed=TRUE, fill="<NA>")]
+        MODEL_EVAL_DT <- data.table::data.table(FULL_FORMULA = each_formula)
+        MODEL_EVAL_DT[, c("TARGET", "PREDICTORS") := data.table::tstrsplit(FULL_FORMULA, "~", fixed=TRUE, fill="<NA>")]
         MODEL_EVAL_DT[, RSQUARED := summary(MOD_FIT)$r.squared]
         MODEL_EVAL_DT[, ADJ_RSQUARED := summary(MOD_FIT)$adj.r.squared]
         MODEL_EVAL_DT[, MSE := mean(MOD_FIT$residuals^2) ]
         MODEL_EVAL_DT[, RMSE := sqrt(mean(MOD_FIT$residuals^2)) ]
-        MODEL_EVAL_DT[, DIMENSION_NAME := DATA_DIMENSION]
-  
+
         
-        PLT_DATA_NEW <- data.table(
+        PLT_DATA_NEW <- data.table::data.table(
             date_ymd = MODEL_DATA[[DATE_COLUMN]], 
             actuals = round(as.numeric(MODEL_DATA[[TARGET_COLUMN]], 0)),
             fittedvals = round(as.numeric(fitted(MOD_FIT), 0))
         )
           
         PLT_DATA_NEW[, mod_formula := each_formula]
-        PLT_DATA_NEW[, dimension_name := DATA_DIMENSION]
+        # PLT_DATA_NEW[, dimension_name := DATA_DIMENSION]
   
         
         FUNCTION_OUTPUT[[each_formula]][["MODEL_FIT"]] <- MOD_FIT
@@ -182,7 +156,7 @@ RunAllModels <- function(USE_THESE_FORMULAS = all_formulas,
 #' @author Abraham Mathew
 #' @family Modeling Functions
 #'
-#' @param AGG_TS_DATA The processed dataset that will be used in the predictive model
+#' @param MODEL_DATA The processed dataset that will be used in the predictive model
 #' @param COLS_TO_ENCODE The column names containing character values that need to be encoded
 #' @param DROP_ORIGINAL_COLS Remove the original character variable
 #' @param DROP_UNUSED_LEVELS Drop any levels that are missing (should be FALSE)
@@ -190,27 +164,17 @@ RunAllModels <- function(USE_THESE_FORMULAS = all_formulas,
 #'
 #' @return returns the originak data table with all the new features appended to the dataset
 #' 
-#' @examples
-#' \donttest{
-#' 
-#'     GoodeR::DoOneHotEncoding(MODEL_DATA,
-#'                       COLS_TO_ENCODE = c("LineOfBusiness", "Category"),
-#'                       DROP_ORIGINAL_COLS = FALSE,
-#'                       DROP_UNUSED_LEVELS = FALSE,
-#'                       DEBUG = TRUE)
-#' 
-#' }
 #' @export
 #' 
 DoOneHotEncoding <- function(MODEL_DATA,
-                             COLS_TO_ENCODE = c("LineOfBusiness", "Category"),
+                             COLS_TO_ENCODE,
                              DROP_ORIGINAL_COLS = FALSE,
                              DROP_UNUSED_LEVELS = FALSE,
                              DEBUG = TRUE){
 
     if(DEBUG) message("DoOneHotEncoding: Function Initialized  \n")
     
-    if(!data.table::is.data.table(AGG_TS_DATA)){
+    if(!data.table::is.data.table(MODEL_DATA)){
          stop("DoOneHotEncoding: The input data is not a data table  \n")
     }
   
@@ -225,7 +189,7 @@ DoOneHotEncoding <- function(MODEL_DATA,
     tempDT <- MODEL_DATA[, mget(COLS_TO_ENCODE)]
     tempDT[, ID := .I]
     for(col in COLS_TO_ENCODE){
-        set(tempDT, 
+        data.table::set(tempDT, 
             j = col, 
             value = factor(paste(col, tempDT[[col]], sep="_"),
                            levels = paste(col, levels(tempDT[[col]]), sep = "_")))
@@ -234,11 +198,11 @@ DoOneHotEncoding <- function(MODEL_DATA,
     if(DEBUG) message("DoOneHotEncoding: Encode character variables  \n")
     
     # One-hot-encode
-    melted <- melt(tempDT, id = 'ID', value.factor = TRUE, na.rm=TRUE)
+    melted <- data.table::melt(tempDT, id = 'ID', value.factor = TRUE, na.rm=TRUE)
     if(DROP_UNUSED_LEVELS){
-      newCols <- dcast(melted, ID ~ value, drop = TRUE, fun.aggregate = length)
+      newCols <- data.table::dcast(melted, ID ~ value, drop = TRUE, fun.aggregate = length)
     } else{
-      newCols <- dcast(melted, ID ~ value, drop = FALSE, fun.aggregate = length)
+      newCols <- data.table::dcast(melted, ID ~ value, drop = FALSE, fun.aggregate = length)
     }
 
     # Fill in potentially missing rows
@@ -263,7 +227,7 @@ DoOneHotEncoding <- function(MODEL_DATA,
       }
     }
     sorted_colnames <- intersect(possible_colnames, colnames(result))
-    setcolorder(result, sorted_colnames)
+    data.table::setcolorder(result, sorted_colnames)
   
     # If dropCols = TRUE, remove the original factor columns
     if(DROP_ORIGINAL_COLS){
@@ -304,20 +268,6 @@ DoOneHotEncoding <- function(MODEL_DATA,
 #' @param PARTITION_TYPE Partition by time or randomly
 #' @param DEBUG If TRUE, the function will be run in debug mode
 #'
-#' @examples
-#' \dontrun{
-#'
-#'    GoodeR::DoDataPartition(
-#'            DATA_DT,
-#'            DATE_COLUMN = NULL,
-#'            TARGET_COLUMN = NULL,
-#'            WHICH_FEATURES = NULL,
-#'            TRAIN_RATIO = 0.80,
-#'            PARTITION_TYPE = "time",  # time or random 
-#'            DEBUG = TRUE)
-#'      
-#' 
-#' @return Returns two separate datasets for training and testing
 #' @export
 #' 
 DoDataPartition <- function(

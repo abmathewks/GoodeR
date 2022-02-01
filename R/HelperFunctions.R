@@ -19,7 +19,15 @@
 #' @param DEBUG If TRUE, the function will run in debug mode
 #'
 #' @return Creates a project and folders in a directory if a RStudio project is not present
-#'
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#'      GoodeR::CreateProjectFiles(PROJECT_PATH = rstudioapi::getActiveProject())
+#' 
+#' }
+#' 
 #' @export
 #' 
 CreateProjectFiles <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
@@ -106,6 +114,7 @@ CreateProjectFiles <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
 #' @return Installs any missing packages and loads of them into the current workspace
 #'
 #' @examples
+#' 
 #' \donttest{
 #'
 #'      PackageCheck(c("ggplot2","data.table","lubridate","rms"))

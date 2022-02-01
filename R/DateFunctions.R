@@ -18,6 +18,7 @@
 #' @return A single date value
 #' 
 #' @examples
+#' 
 #' \donttest{
 #' 
 #'     AddMonths(as.Date("2020-01-01"), 1)
@@ -77,6 +78,7 @@ AddMonths <- function(DATE_VAL,
 #' @return A single date value
 #' 
 #' @examples
+#' 
 #' \donttest{
 #' 
 #'     AddWeeks(as.Date("2020-01-01"), 1)
@@ -136,6 +138,7 @@ AddWeeks <- function(DATE_VAL,
 #' @return A single date value
 #' 
 #' @examples
+#' 
 #' \donttest{
 #' 
 #'     AddDays(as.Date("2020-01-01"), 1)
@@ -307,6 +310,7 @@ CreateOutputDates <- function(FULL_DATA,
 #' @return A string value that has been cleaned
 #' 
 #' @examples
+#' 
 #' \donttest{
 #' 
 #'      RemoveSpecialChars("This is&%?? is a sting")

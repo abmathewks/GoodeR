@@ -19,10 +19,12 @@
 #' @param LOGICAL_COLS Number of logical columns
 #' @param FACTOR_COLS Number of factor columns
 #' @param DEBUG If TRUE, the function will run in debug mode
+#' 
 #' @examples
+#' 
 #' \dontrun{
 #' 
-#' data <- FakeDataGenerator(NUM_ROWS = 10000,
+#' data <- GoodeR::FakeDataGenerator(NUM_ROWS = 10000,
 #'                            DATE_COLS = 1,
 #'                            NUMERIC_COLS = 3,
 #'                            CHARACTER_COLS = 1,
@@ -32,6 +34,7 @@
 #' }
 #' 
 #' @export
+#' 
 FakeDataGenerator <- function(NUM_ROWS = 10000,
                               DATE_COLS = 1,
                               NUMERIC_COLS = 3,
