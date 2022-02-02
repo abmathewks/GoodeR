@@ -59,8 +59,7 @@ CreateProjectFiles(PROJECT_PATH = rstudioapi::getActiveProject(),
 
 ```r
 
-PackageCheck(USE_THESE_PACKAGES,
-             DEBUG = TRUE)
+GoodeR::PackageCheck(c("ggplot2","data.table","lubridate","rms"))
                          
 ```                         
 
