@@ -18,6 +18,7 @@
 - [Installation](#installation)
 - [Project Initialization](#project-initialization)
 - [Data Preparation](#data-preparation)
+- [Data Acquisition](#data-acquisition)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
 - [Statistical Modeling](#statistical-modeling)
 - [Time Series Forecasting](#time-series-forecasting)
