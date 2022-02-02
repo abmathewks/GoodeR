@@ -15,7 +15,7 @@
 #' @param WHICH_DATA_FOLDER The name of the data sub directory from where data will be pulled 
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #'
-#' @return returns all the csv files in the data folder within a project as a data.table
+#' @return Returns all the csv files in the data folder within a project as a data.table
 #' 
 #' @export
 #' 
@@ -39,7 +39,7 @@ GetCsvData <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
 
     FUNCTION_OUTPUT <- list()
   
-    if(DEBUG) message("GetCsvData: Project is allready present  \n")
+    if(DEBUG) message("GetCsvData: Find all files in the data folder  \n")
 
     all_folders <- file.info(list.files(file.path(PROJECT_PATH, "data", WHICH_DATA_FOLDER), full.names = TRUE))
       
@@ -85,21 +85,21 @@ GetCsvData <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
 #' @author Abraham Mathew
 #' @family Data Import
 #'
-#' @param SQL_QUERY_FILEPATH  Path to the .SQL file that needs to be imported
+#' @param PROJECT_PATH  The main project directory
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #' 
-#' @return returns the sql query as a srring
+#' @return Returns the sql query as a srring
 #' 
 #' @export
 #' 
-GetSqlQuery <- function(SQL_QUERY_FILEPATH,
+GetSqlQuery <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
                         DEBUG = TRUE){
  
     if(DEBUG) message("GetSqlQuery: Script Initialized  \n")
       
     FUNCTION_OUTPUT <- list()
   
-    con = file(SQL_QUERY_FILEPATH, "r")
+    con = file(file.path(PROJECT_PATH, "queries"), "r")
     
     sql_string <- ""
   
@@ -121,7 +121,7 @@ GetSqlQuery <- function(SQL_QUERY_FILEPATH,
         sql_string <- paste(sql_string, line)
     }
   
-    FUNCTION_OUTPUT[["SQL_FILEPATH"]] <- SQL_QUERY_FILEPATH
+    FUNCTION_OUTPUT[["PROJECT_PATH"]] <- PROJECT_PATH
     
     if(DEBUG) message("GetSqlQuery: Collecting final output  \n")
     
@@ -152,23 +152,23 @@ GetSqlQuery <- function(SQL_QUERY_FILEPATH,
 #' @param DRIVER  Name of the SQL Platform
 #' @param SERVER  Name of the server
 #' @param DB_NAME  Name of the database
-#' @param QUERY_PATH  path to the SQL query that will be executed 
+#' @param PROJECT_PATH  path to the project directory
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #'
-#' @return returns the results of the sql query
+#' @return Returns the results of the sql query
 #' 
 #' @export
 #' 
 GetSqlData <- function(DRIVER = "SQL Server",
                          SERVER = "sdl02-vm161",
                          DB_NAME = "OpsDW",
-                         QUERY_PATH = NULL,
+                         PROJECT_PATH = NULL,
                          DEBUG = TRUE){
      
       if(DEBUG) message("GetSqlData: Function Initialized  \n")
 
-      if(!is.null(QUERY_PATH)){
-          stop("GetSqlData: SQL Query path is missing  \n")
+      if(!is.null(PROJECT_PATH)){
+          stop("GetSqlData: Project path is missing  \n")
       }
         
       start_time = Sys.time()
@@ -185,7 +185,7 @@ GetSqlData <- function(DRIVER = "SQL Server",
       
       if(DEBUG) message("GetSqlData: Get SQL query  \n")    
       
-      which_query <- GET_SQL_QUERY(QUERY_PATH,
+      which_query <- GET_SQL_QUERY(PROJECT_PATH,
                                    DEBUG = TRUE)
       
       if(DEBUG) message("GetSqlData: Pull data from database  \n")    

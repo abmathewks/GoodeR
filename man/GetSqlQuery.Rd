@@ -4,15 +4,15 @@
 \alias{GetSqlQuery}
 \title{GetSqlQuery}
 \usage{
-GetSqlQuery(SQL_QUERY_FILEPATH, DEBUG = TRUE)
+GetSqlQuery(PROJECT_PATH = rstudioapi::getActiveProject(), DEBUG = TRUE)
 }
 \arguments{
-\item{SQL_QUERY_FILEPATH}{Path to the .SQL file that needs to be imported}
+\item{PROJECT_PATH}{The main project directory}
 
 \item{DEBUG}{If TRUE, the function will run in debug mode}
 }
 \value{
-returns the sql query as a srring
+Returns the sql query as a srring
 }
 \description{
 This function will grab the conrents if a SQL file as a string

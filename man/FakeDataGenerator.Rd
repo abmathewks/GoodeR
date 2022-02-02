@@ -29,6 +29,9 @@ FakeDataGenerator(
 
 \item{DEBUG}{If TRUE, the function will run in debug mode}
 }
+\value{
+A data table with some fake data
+}
 \description{
 Create fake data for examples
 }
@@ -43,6 +46,7 @@ data <- GoodeR::FakeDataGenerator(NUM_ROWS = 10000,
                            LOGICAL_COLS = 0,
                            FACTOR_COLS = 2,
                            DEBUG = TRUE)
+                           
 }
 
 }

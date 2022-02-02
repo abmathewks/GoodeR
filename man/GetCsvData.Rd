@@ -18,7 +18,7 @@ GetCsvData(
 \item{DEBUG}{If TRUE, the function will run in debug mode}
 }
 \value{
-returns all the csv files in the data folder within a project as a data.table
+Returns all the csv files in the data folder within a project as a data.table
 }
 \description{
 This function will grab data from all csv files within a directory

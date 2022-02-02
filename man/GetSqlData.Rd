@@ -8,7 +8,7 @@ GetSqlData(
   DRIVER = "SQL Server",
   SERVER = "sdl02-vm161",
   DB_NAME = "OpsDW",
-  QUERY_PATH = NULL,
+  PROJECT_PATH = NULL,
   DEBUG = TRUE
 )
 }
@@ -19,12 +19,12 @@ GetSqlData(
 
 \item{DB_NAME}{Name of the database}
 
-\item{QUERY_PATH}{path to the SQL query that will be executed}
+\item{PROJECT_PATH}{path to the project directory}
 
 \item{DEBUG}{If TRUE, the function will run in debug mode}
 }
 \value{
-returns the results of the sql query
+Returns the results of the sql query
 }
 \description{
 This function will grab data from a SQL database using a SQL file

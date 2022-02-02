@@ -20,6 +20,8 @@
 #' @param FACTOR_COLS Number of factor columns
 #' @param DEBUG If TRUE, the function will run in debug mode
 #' 
+#' @return A data table with some fake data
+#' 
 #' @examples
 #' 
 #' \dontrun{
@@ -31,6 +33,7 @@
 #'                            LOGICAL_COLS = 0,
 #'                            FACTOR_COLS = 2,
 #'                            DEBUG = TRUE)
+#'                            
 #' }
 #' 
 #' @export

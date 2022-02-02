@@ -24,6 +24,7 @@ Check if a vector of packages is installed. If they are not, install and load th
      GoodeR::PackageCheck(c("ggplot2","data.table","lubridate","rms"))
 
 }
+
 }
 \seealso{
 Other Project Preparation: 

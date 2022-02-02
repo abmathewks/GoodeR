@@ -16,10 +16,32 @@
 #' @param DATE_COLUMN The column name containing date value
 #' @param TARGET_COLUMN The column name containing target value
 #' @param OTHER_VARIABLES_TO_AGG Other columns that will be aggregated
-#' @param DIMENSION_COLUMN_NAMES If value provided, aggregation will be done by this column
+#' @param BY_WHICH_GROUP If value provided, aggregation will be done by this column
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #'
 #' @return returns a data table with the aggregated data by date and any potential group variables
+#' 
+#' @examples
+#' 
+#' \dontrun{
+#' 
+#' data <- GoodeR::FakeDataGenerator(NUM_ROWS = 10000,
+#'                            DATE_COLS = 1,
+#'                            NUMERIC_COLS = 3,
+#'                            CHARACTER_COLS = 1,
+#'                            LOGICAL_COLS = 0,
+#'                            FACTOR_COLS = 2,
+#'                            DEBUG = TRUE)
+#'                            
+#' AggregateTimeSeriesData(
+#'              data,
+#'              DATE_COLUMN = "date_ymd",
+#'              TARGET_COLUMN = "V1",
+#'              OTHER_VARIABLES_TO_AGG = NULL,
+#'              BY_WHICH_GROUP = NULL,
+#'              DEBUG = TRUE)
+#'                            
+#' }
 #' 
 #' @export
 #' 
@@ -28,7 +50,7 @@ AggregateTimeSeriesData <- function(
       DATE_COLUMN = "SalesDate",
       TARGET_COLUMN = "TotalSales",
       OTHER_VARIABLES_TO_AGG = NULL,
-      DIMENSION_COLUMN_NAMES = NULL,
+      BY_WHICH_GROUP = NULL,
       DEBUG = TRUE){
   
     if(DEBUG) message("AggregateTimeSeriesData: Function Initialized  \n")
@@ -46,10 +68,12 @@ AggregateTimeSeriesData <- function(
     ALL_COLUMNS_TO_AGG <- unique(c(TARGET_COLUMN, OTHER_VARIABLES_TO_AGG))
   
     if(!all(sapply(RAW_TS_DATA[, mget(ALL_COLUMNS_TO_AGG)], class) %chin% c("numeric","integer"))){ 
+      
          stop("AggregateTimeSeriesData: ALL_COLUMNS_TO_AGG contain non numeric values  \n")
+      
     } else { 
       
-        if(is.null(DIMENSION_COLUMN_NAMES)){
+        if(is.null(BY_WHICH_GROUP)){
               
             if(DEBUG) message("AggregateTimeSeriesData: Aggregate value by DATE_COLUMN  \n")    
               
@@ -63,7 +87,7 @@ AggregateTimeSeriesData <- function(
             if(DEBUG) message("AggregateTimeSeriesData: Aggregate value by BY_WHICH_GROUP and DATE_COLUMN  \n")    
               
             AGG_TS_DATA  <- RAW_TS_DATA[, lapply(.SD, sum), 
-                                        by = mget(c(DIMENSION_COLUMN_NAMES, DATE_COLUMN)), 
+                                        by = mget(c(BY_WHICH_GROUP, DATE_COLUMN)), 
                                         .SDcols = ALL_COLUMNS_TO_AGG]
                 
         }
@@ -73,7 +97,7 @@ AggregateTimeSeriesData <- function(
     FUNCTION_OUTPUT[["TARGET_COLUMN"]] <- TARGET_COLUMN
     FUNCTION_OUTPUT[["OTHER_VARIABLES_TO_AGG"]] <- OTHER_VARIABLES_TO_AGG
     FUNCTION_OUTPUT[["ALL_COLUMNS_TO_AGG"]] <- ALL_COLUMNS_TO_AGG
-    FUNCTION_OUTPUT[["DIMENSION_COLUMN_NAMES"]] <- ifelse(is.null(DIMENSION_COLUMN_NAMES), "NULL", DIMENSION_COLUMN_NAMES)
+    FUNCTION_OUTPUT[["BY_WHICH_GROUP"]] <- ifelse(is.null(BY_WHICH_GROUP), "NULL", BY_WHICH_GROUP)
     
     if(DEBUG) message("AggregateTimeSeriesData: Collecting final output  \n")
     
@@ -329,6 +353,70 @@ AddMissingDates <- function(
     }
 }
  
+
+
+###################################################################################################
+
+
+#' @title RemoveSpecialChars
+#'
+#' @description This function will take a string and clean it 
+#'
+#' @author Abraham Mathew
+#' @family Data Preparation
+#' 
+#' @param STRING_VEC a vector of strings
+#' @param IS_COLNAME If TRUE, the function replace column names 
+#' @param DEBUG If TRUE, the function will run in debug mode 
+#'
+#' @return A string value that has been cleaned
+#' 
+#' @examples
+#' 
+#' \donttest{
+#' 
+#'      GoodeR::RemoveSpecialChars("This is&%?? is a sting")
+#' 
+#' }
+#' 
+#' @export
+#'  
+RemoveSpecialChars <- function(STRING_VEC,
+                                 IS_COLNAME = TRUE,
+                                 DEBUG = TRUE){
+
+    if(DEBUG) message("RemoveSpecialChars: Function Initialized  \n")
+  
+    FUNCTION_OUTPUT <- list()
+  
+    FUNCTION_OUTPUT[["ORIGINAL_STRING"]] <- STRING_VEC
+    FUNCTION_OUTPUT[["IS_COLNAME"]] <- IS_COLNAME
+    
+    if(!IS_COLNAME){ 
+        STRING_VEC <- gsub("[[:punct:]]", "", STRING_VEC)
+        STRING_VEC <- tolower(STRING_VEC)
+    } else {
+        STRING_VEC <- gsub("[[:punct:]]", " ", STRING_VEC)
+        STRING_VEC <- gsub(" ", "_", STRING_VEC)
+        STRING_VEC <- tolower(STRING_VEC)
+    }
+  
+    if(DEBUG) message("RemoveSpecialChars: Collecting final output  \n")
+    
+    FUNCTION_OUTPUT[["NEW_STRING"]] <- STRING_VEC
+    
+    if(nchar(STRING_VEC) >= 1){
+          if(DEBUG) message("RemoveSpecialChars: Function run completed  \n")
+      
+          return(FUNCTION_OUTPUT)
+    } else {
+          stop("RemoveSpecialChars: Strings not cleaned  \n")
+    }
+
+}
+
+
+###################################################################################################
 
 ###############################################################################
 

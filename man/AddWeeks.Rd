@@ -26,6 +26,7 @@ This function will take a single date value and add N weeks to it.
     GoodeR::AddWeeks(as.Date("2020-01-01"), 1)
 
 }
+
 }
 \seealso{
 Other Data Preparation: 

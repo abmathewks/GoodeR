@@ -29,6 +29,9 @@ CreateOutputDates(
 
 \item{DEBUG}{If TRUE, the function will run in debug mode}
 }
+\value{
+A sequence of dates for the output from the predictive model
+}
 \description{
 This function will collect date values for the output of the forecasting output
 }
@@ -52,6 +55,7 @@ This function will collect date values for the output of the forecasting output
                            
 
 }
+
 }
 \seealso{
 Other Data Preparation: 

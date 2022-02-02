@@ -24,6 +24,7 @@
 #'     GoodeR::AddMonths(as.Date("2020-01-01"), 1)
 #' 
 #' }
+#' 
 #' @export
 #' 
 AddMonths <- function(DATE_VAL, 
@@ -84,6 +85,7 @@ AddMonths <- function(DATE_VAL,
 #'     GoodeR::AddWeeks(as.Date("2020-01-01"), 1)
 #' 
 #' }
+#' 
 #' @export
 #' 
 AddWeeks <- function(DATE_VAL, 
@@ -144,6 +146,7 @@ AddWeeks <- function(DATE_VAL,
 #'     GoodeR::AddDays(as.Date("2020-01-01"), 1)
 #' 
 #' }
+#' 
 #' @export
 #' 
 AddDays <- function(DATE_VAL, 
@@ -200,6 +203,8 @@ AddDays <- function(DATE_VAL,
 #' @param EVAL_MODE  If TRUE, only perform train and test on the actual data 
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #' 
+#' @return A sequence of dates for the output from the predictive model 
+#' 
 #' @examples
 #' 
 #' \donttest{
@@ -220,6 +225,7 @@ AddDays <- function(DATE_VAL,
 #'                            
 #' 
 #' }
+#' 
 #' @export
 #' 
 CreateOutputDates <- function(FULL_DATA,

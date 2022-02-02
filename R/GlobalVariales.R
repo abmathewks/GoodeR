@@ -50,7 +50,8 @@ utils::globalVariables(
     "ADJ_RSQUARED",
     "MSE",
     "RMSE",
-    "fitted"
+    "fitted",
+    "QUERY_PATH"
         
   )
 )

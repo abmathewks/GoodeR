@@ -9,7 +9,7 @@ AggregateTimeSeriesData(
   DATE_COLUMN = "SalesDate",
   TARGET_COLUMN = "TotalSales",
   OTHER_VARIABLES_TO_AGG = NULL,
-  DIMENSION_COLUMN_NAMES = NULL,
+  BY_WHICH_GROUP = NULL,
   DEBUG = TRUE
 )
 }
@@ -22,7 +22,7 @@ AggregateTimeSeriesData(
 
 \item{OTHER_VARIABLES_TO_AGG}{Other columns that will be aggregated}
 
-\item{DIMENSION_COLUMN_NAMES}{If value provided, aggregation will be done by this column}
+\item{BY_WHICH_GROUP}{If value provided, aggregation will be done by this column}
 
 \item{DEBUG}{If TRUE, the function will run in debug mode}
 }
@@ -31,6 +31,29 @@ returns a data table with the aggregated data by date and any potential group va
 }
 \description{
 This function will take raw data and aggregate it by date
+}
+\examples{
+
+\dontrun{
+
+data <- GoodeR::FakeDataGenerator(NUM_ROWS = 10000,
+                           DATE_COLS = 1,
+                           NUMERIC_COLS = 3,
+                           CHARACTER_COLS = 1,
+                           LOGICAL_COLS = 0,
+                           FACTOR_COLS = 2,
+                           DEBUG = TRUE)
+                           
+AggregateTimeSeriesData(
+             data,
+             DATE_COLUMN = "date_ymd",
+             TARGET_COLUMN = "V1",
+             OTHER_VARIABLES_TO_AGG = NULL,
+             BY_WHICH_GROUP = NULL,
+             DEBUG = TRUE)
+                           
+}
+
 }
 \seealso{
 Other Data Preparation: 
