@@ -299,9 +299,9 @@ DoDataPartition <- function(
                       
       smp_size <- floor(TRAIN_RATIO * nrow(DATA_DT))
               
-      DATA_DT_Train <- DATA_DT[1:smp_size, ]
+      DATA_DT_Train <- DATA_DT[1:smp_size, mget(ALL_FEATURES)]
             
-      DATA_DT_Test <- DATA_DT[(smp_size+1):nrow(DATA_DT), ]
+      DATA_DT_Test <- DATA_DT[(smp_size+1):nrow(DATA_DT), mget(ALL_FEATURES)]
                       
   } else if(PARTITION_TYPE == "random"){
           
@@ -309,9 +309,9 @@ DoDataPartition <- function(
             
       inTrain <- DATA_DT[, sample(.N, floor(.N*TRAIN_RATIO))]
               
-      DATA_DT_Train <- DATA_DT[inTrain, ]
+      DATA_DT_Train <- DATA_DT[inTrain, mget(ALL_FEATURES)]
               
-      DATA_DT_Test <- DATA_DT[-inTrain, ]
+      DATA_DT_Test <- DATA_DT[-inTrain, mget(ALL_FEATURES)]
         
   } else {
         
