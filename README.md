@@ -41,9 +41,20 @@ GoodeR contains a number of function to initialize and set up a project so that 
 
 - CreateProjectFiles: This function allows a user to create a project and utilize a standard folder structure for a project.
 
+
+```r
+
+CreateProjectFiles(PROJECT_PATH = rstudioapi::getActiveProject(),
+                   FOLDERS_TO_CREATE = c("data", "docs", "figs", "logs",
+                                         "output", "queries", "R", "tests"),
+                   OPEN_NEW_SESSION = TRUE,
+                   DEBUG = TRUE)
+                               
+```
+
 <p align = "center">
   <img width = "500" src = "https://github.com/abmathewks/GoodeR/blob/main/images/FolderStructure.png">
 </p>
 
-
+- PackageCheck: This function takes a vector of package names, checks whether they are installed, and imports all of them into the current R session.
 
