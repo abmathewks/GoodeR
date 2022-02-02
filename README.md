@@ -45,5 +45,5 @@ GoodeR contains a number of function to initialize and set up a project so that 
   <img width = "500" src = "https://github.com/abmathewks/GoodeR/blob/main/images/FolderStructure.png">
 </p>
 
-
+- PackageCheck: This function takes a vector of package names, checks whether they are installed, and imports all of them into the current R session.
 
