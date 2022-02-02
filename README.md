@@ -35,9 +35,15 @@ devtools::install_github("abmathewks/GoodeR", dependencies = TRUE)
 
 ```
 
-# Project initialization
+# Project Initialization
 
+GoodeR contains a number of function to initialize and set up a project so that directories and files are ready for use.
 
+- CreateProjectFiles: This function allows a user to create a project and utilize a standard folder structure for a project.
+
+<p align = "center">
+  <img width = "500" src = "https://github.com/abmathewks/GoodeR/blob/main/images/FolderStructure.png">
+</p>
 
 
 
