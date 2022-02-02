@@ -31,7 +31,7 @@ The GoodeR package can be installed directly from GitHub using the devtools pack
 
 ```r
 
-devtools::install_github('abmathewks/GoodeR', upgrade = FALSE, dependencies = TRUE, force = TRUE)
+devtools::install_github("abmathewks/GoodeR", upgrade = FALSE, dependencies = TRUE, force = TRUE)
 
 ```
 
