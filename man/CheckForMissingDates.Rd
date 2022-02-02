@@ -37,6 +37,7 @@ Other Data Preparation:
 \code{\link{AddWeeks}()},
 \code{\link{AggregateTimeSeriesData}()},
 \code{\link{CreateOutputDates}()},
+\code{\link{DoDataPartition}()},
 \code{\link{FakeDataGenerator}()},
 \code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}

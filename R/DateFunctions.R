@@ -21,7 +21,7 @@
 #' 
 #' \donttest{
 #' 
-#'     AddMonths(as.Date("2020-01-01"), 1)
+#'     GoodeR::AddMonths(as.Date("2020-01-01"), 1)
 #' 
 #' }
 #' @export
@@ -81,7 +81,7 @@ AddMonths <- function(DATE_VAL,
 #' 
 #' \donttest{
 #' 
-#'     AddWeeks(as.Date("2020-01-01"), 1)
+#'     GoodeR::AddWeeks(as.Date("2020-01-01"), 1)
 #' 
 #' }
 #' @export
@@ -141,7 +141,7 @@ AddWeeks <- function(DATE_VAL,
 #' 
 #' \donttest{
 #' 
-#'     AddDays(as.Date("2020-01-01"), 1)
+#'     GoodeR::AddDays(as.Date("2020-01-01"), 1)
 #' 
 #' }
 #' @export
@@ -200,27 +200,47 @@ AddDays <- function(DATE_VAL,
 #' @param EVAL_MODE  If TRUE, only perform train and test on the actual data 
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #' 
+#' @examples
+#' 
+#' \donttest{
+#' 
+#'      library(data.table)
+#'      
+#'      FULL_DATA <- data.table::data.table(date_ymd = seq.Date(as.Date("2010-01-01"), 
+#'                                                              length.out = 12, by = "month"),
+#'                                          DataType = c(rep("TRAIN",9), rep("TEST",3)))
+#'
+#'       CreateOutputDates(FULL_DATA,
+#'                                 DATE_COLUMN = "date_ymd",
+#'                                 DATA_TYPE_COLUMN = "DataType",
+#'                                 FORECAST_HORIZON = 3,
+#'                                 TIME_FRAME = "month",
+#'                                 EVAL_MODE = TRUE,
+#'                                 DEBUG = TRUE)
+#'                            
+#' 
+#' }
 #' @export
 #' 
 CreateOutputDates <- function(FULL_DATA,
-                              DATE_COLUMN = "SalesDate",
+                              DATE_COLUMN = "date_ymd",
                               DATA_TYPE_COLUMN = "DataType",
-                              FORECAST_HORIZON = 30,
-                              TIME_FRAME = "day",
+                              FORECAST_HORIZON = 3,
+                              TIME_FRAME = "month",
                               EVAL_MODE = TRUE,
                               DEBUG = TRUE){
           
     if(DEBUG) message("CreateOutputDates: Function initialized  \n")
 
     if(!data.table::is.data.table(FULL_DATA)){
-        stop("CreateOutputDates: One one the input datasets is not a data.table  \n")
+        stop("CreateOutputDates: The input dataset is not a data.table  \n")
     }
   
-    if(!c(DATE_COLUMN, DATA_TYPE_COLUMN) %chin% colnames(FULL_DATA)){
+    if(!all(c(DATE_COLUMN, DATA_TYPE_COLUMN) %in% colnames(FULL_DATA))){
         stop("CreateOutputDates: Columm name inputs are not in the data  \n")
     }
     
-    if(TIME_FRAME %chin% c("day","week","month")){
+    if(!TIME_FRAME %in% c("day","week","month")){
         stop("CreateOutputDates: The time frame input is not accepted  \n")
     }
   
@@ -293,64 +313,6 @@ CreateOutputDates <- function(FULL_DATA,
 
 
 
-###################################################################################################
-
-
-#' @title RemoveSpecialChars
-#'
-#' @description This function will take a string and clean it 
-#'
-#' @author Abraham Mathew
-#' @family Data Preparation
-#' 
-#' @param STRING_VEC a vector of strings
-#' @param IS_COLNAME If TRUE, the function replace column names 
-#' @param DEBUG If TRUE, the function will run in debug mode 
-#'
-#' @return A string value that has been cleaned
-#' 
-#' @examples
-#' 
-#' \donttest{
-#' 
-#'      RemoveSpecialChars("This is&%?? is a sting")
-#' 
-#' }
-#' @export
-#'  
-RemoveSpecialChars <- function(STRING_VEC,
-                                 IS_COLNAME = TRUE,
-                                 DEBUG = TRUE){
-
-    if(DEBUG) message("RemoveSpecialChars: Function Initialized  \n")
-  
-    FUNCTION_OUTPUT <- list()
-  
-    FUNCTION_OUTPUT[["ORIGINAL_STRING"]] <- STRING_VEC
-    FUNCTION_OUTPUT[["IS_COLNAME"]] <- IS_COLNAME
-    
-    if(!IS_COLNAME){ 
-        STRING_VEC <- gsub("[[:punct:]]", "", STRING_VEC)
-        STRING_VEC <- tolower(STRING_VEC)
-    } else {
-        STRING_VEC <- gsub("[[:punct:]]", " ", STRING_VEC)
-        STRING_VEC <- gsub(" ", "_", STRING_VEC)
-        STRING_VEC <- tolower(STRING_VEC)
-    }
-  
-    if(DEBUG) message("RemoveSpecialChars: Collecting final output  \n")
-    
-    FUNCTION_OUTPUT[["NEW_STRING"]] <- STRING_VEC
-    
-    if(nchar(STRING_VEC) >= 1){
-          if(DEBUG) message("RemoveSpecialChars: Function run completed  \n")
-      
-          return(FUNCTION_OUTPUT)
-    } else {
-          stop("RemoveSpecialChars: Strings not cleaned  \n")
-    }
-
-}
 
 
 ###################################################################################################
@@ -363,12 +325,5 @@ RemoveSpecialChars <- function(STRING_VEC,
 
 
 ###################################################################################################
-
-
-
-###################################################################################################
-
-
-
 
 

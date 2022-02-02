@@ -20,9 +20,10 @@ A single date value
 This function will take a single date value and add N days to it.
 }
 \examples{
+
 \donttest{
 
-    AddDays(as.Date("2020-01-01"), 1)
+    GoodeR::AddDays(as.Date("2020-01-01"), 1)
 
 }
 }
@@ -34,6 +35,7 @@ Other Data Preparation:
 \code{\link{AggregateTimeSeriesData}()},
 \code{\link{CheckForMissingDates}()},
 \code{\link{CreateOutputDates}()},
+\code{\link{DoDataPartition}()},
 \code{\link{FakeDataGenerator}()},
 \code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}

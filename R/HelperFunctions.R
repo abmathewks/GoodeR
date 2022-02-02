@@ -117,7 +117,7 @@ CreateProjectFiles <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
 #' 
 #' \donttest{
 #'
-#'      PackageCheck(c("ggplot2","data.table","lubridate","rms"))
+#'      GoodeR::PackageCheck(c("ggplot2","data.table","lubridate","rms"))
 #'
 #' }
 #' @export
@@ -173,6 +173,69 @@ PackageCheck <- function(USE_THESE_PACKAGES,
     }
 }
 
+
+
+###################################################################################################
+
+
+#' @title RemoveSpecialChars
+#'
+#' @description This function will take a string and clean it 
+#'
+#' @author Abraham Mathew
+#' @family Data Preparation
+#' 
+#' @param STRING_VEC a vector of strings
+#' @param IS_COLNAME If TRUE, the function replace column names 
+#' @param DEBUG If TRUE, the function will run in debug mode 
+#'
+#' @return A string value that has been cleaned
+#' 
+#' @examples
+#' 
+#' \donttest{
+#' 
+#'      GoodeR::RemoveSpecialChars("This is&%?? is a sting")
+#' 
+#' }
+#' @export
+#'  
+RemoveSpecialChars <- function(STRING_VEC,
+                                 IS_COLNAME = TRUE,
+                                 DEBUG = TRUE){
+
+    if(DEBUG) message("RemoveSpecialChars: Function Initialized  \n")
+  
+    FUNCTION_OUTPUT <- list()
+  
+    FUNCTION_OUTPUT[["ORIGINAL_STRING"]] <- STRING_VEC
+    FUNCTION_OUTPUT[["IS_COLNAME"]] <- IS_COLNAME
+    
+    if(!IS_COLNAME){ 
+        STRING_VEC <- gsub("[[:punct:]]", "", STRING_VEC)
+        STRING_VEC <- tolower(STRING_VEC)
+    } else {
+        STRING_VEC <- gsub("[[:punct:]]", " ", STRING_VEC)
+        STRING_VEC <- gsub(" ", "_", STRING_VEC)
+        STRING_VEC <- tolower(STRING_VEC)
+    }
+  
+    if(DEBUG) message("RemoveSpecialChars: Collecting final output  \n")
+    
+    FUNCTION_OUTPUT[["NEW_STRING"]] <- STRING_VEC
+    
+    if(nchar(STRING_VEC) >= 1){
+          if(DEBUG) message("RemoveSpecialChars: Function run completed  \n")
+      
+          return(FUNCTION_OUTPUT)
+    } else {
+          stop("RemoveSpecialChars: Strings not cleaned  \n")
+    }
+
+}
+
+
+###################################################################################################
 
 
 

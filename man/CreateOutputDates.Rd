@@ -6,10 +6,10 @@
 \usage{
 CreateOutputDates(
   FULL_DATA,
-  DATE_COLUMN = "SalesDate",
+  DATE_COLUMN = "date_ymd",
   DATA_TYPE_COLUMN = "DataType",
-  FORECAST_HORIZON = 30,
-  TIME_FRAME = "day",
+  FORECAST_HORIZON = 3,
+  TIME_FRAME = "month",
   EVAL_MODE = TRUE,
   DEBUG = TRUE
 )
@@ -32,6 +32,27 @@ CreateOutputDates(
 \description{
 This function will collect date values for the output of the forecasting output
 }
+\examples{
+
+\donttest{
+
+     library(data.table)
+     
+     FULL_DATA <- data.table::data.table(date_ymd = seq.Date(as.Date("2010-01-01"), 
+                                                             length.out = 12, by = "month"),
+                                         DataType = c(rep("TRAIN",9), rep("TEST",3)))
+
+      CreateOutputDates(FULL_DATA,
+                                DATE_COLUMN = "date_ymd",
+                                DATA_TYPE_COLUMN = "DataType",
+                                FORECAST_HORIZON = 3,
+                                TIME_FRAME = "month",
+                                EVAL_MODE = TRUE,
+                                DEBUG = TRUE)
+                           
+
+}
+}
 \seealso{
 Other Data Preparation: 
 \code{\link{AddDays}()},
@@ -40,6 +61,7 @@ Other Data Preparation:
 \code{\link{AddWeeks}()},
 \code{\link{AggregateTimeSeriesData}()},
 \code{\link{CheckForMissingDates}()},
+\code{\link{DoDataPartition}()},
 \code{\link{FakeDataGenerator}()},
 \code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}

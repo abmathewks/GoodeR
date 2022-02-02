@@ -18,9 +18,10 @@ Installs any missing packages and loads of them into the current workspace
 Check if a vector of packages is installed. If they are not, install and load them
 }
 \examples{
+
 \donttest{
 
-     PackageCheck(c("ggplot2","data.table","lubridate","rms"))
+     GoodeR::PackageCheck(c("ggplot2","data.table","lubridate","rms"))
 
 }
 }

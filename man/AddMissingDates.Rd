@@ -40,6 +40,7 @@ Other Data Preparation:
 \code{\link{AggregateTimeSeriesData}()},
 \code{\link{CheckForMissingDates}()},
 \code{\link{CreateOutputDates}()},
+\code{\link{DoDataPartition}()},
 \code{\link{FakeDataGenerator}()},
 \code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}

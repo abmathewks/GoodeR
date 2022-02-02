@@ -27,6 +27,15 @@ Creates a project and folders in a directory if a RStudio project is not present
 \description{
 Check a directory and create a project and folders if they don't exist
 }
+\examples{
+
+\dontrun{
+
+     GoodeR::CreateProjectFiles(PROJECT_PATH = rstudioapi::getActiveProject())
+
+}
+
+}
 \seealso{
 Other Project Preparation: 
 \code{\link{PackageCheck}()}

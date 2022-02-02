@@ -33,9 +33,10 @@ FakeDataGenerator(
 Create fake data for examples
 }
 \examples{
+
 \dontrun{
 
-data <- FakeDataGenerator(NUM_ROWS = 10000,
+data <- GoodeR::FakeDataGenerator(NUM_ROWS = 10000,
                            DATE_COLS = 1,
                            NUMERIC_COLS = 3,
                            CHARACTER_COLS = 1,
@@ -54,6 +55,7 @@ Other Data Preparation:
 \code{\link{AggregateTimeSeriesData}()},
 \code{\link{CheckForMissingDates}()},
 \code{\link{CreateOutputDates}()},
+\code{\link{DoDataPartition}()},
 \code{\link{FlattenLongData}()},
 \code{\link{RemoveSpecialChars}()}
 }
