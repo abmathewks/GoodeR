@@ -15,6 +15,7 @@
 
 # Contents
 
+- [Installation](#installation)
 - [Project Initialization](#project-initialization)
 - [Data Preparation](#data-preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
@@ -23,6 +24,16 @@
 - [Machine Learning](#machine-learning)
 - [Model Evaluation](#model-evaluation)
 
+
+# Installation
+
+The GoodeR package can be installed directly from GitHub using the devtools package. 
+
+```r
+
+devtools::install_github('abmathewks/GoodeR', upgrade = FALSE, dependencies = TRUE, force = TRUE)
+
+```
 
 
 
