@@ -86,6 +86,7 @@ GetCsvData <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
 #' @family Data Import
 #'
 #' @param PROJECT_PATH  The main project directory
+#' @param FILE_PATH The name of the SQL file in the queries sub-directory 
 #' @param DEBUG If TRUE, the function will run in debug mode 
 #' 
 #' @return Returns the sql query as a srring
@@ -93,13 +94,14 @@ GetCsvData <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
 #' @export
 #' 
 GetSqlQuery <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
+                        FILE_NAME = "File.SQL",
                         DEBUG = TRUE){
  
     if(DEBUG) message("GetSqlQuery: Script Initialized  \n")
       
     FUNCTION_OUTPUT <- list()
   
-    con = file(file.path(PROJECT_PATH, "queries"), "r")
+    con = file(file.path(PROJECT_PATH, "queries", FILE_NAME), "r")
     
     sql_string <- ""
   
@@ -122,6 +124,8 @@ GetSqlQuery <- function(PROJECT_PATH = rstudioapi::getActiveProject(),
     }
   
     FUNCTION_OUTPUT[["PROJECT_PATH"]] <- PROJECT_PATH
+    FUNCTION_OUTPUT[["FILE_NAME"]] <- FILE_NAME
+    FUNCTION_OUTPUT[["FULL_PATH"]] <- file.path(PROJECT_PATH, "queries", FILE_NAME)
     
     if(DEBUG) message("GetSqlQuery: Collecting final output  \n")
     
@@ -186,6 +190,7 @@ GetSqlData <- function(DRIVER = "SQL Server",
       if(DEBUG) message("GetSqlData: Get SQL query  \n")    
       
       which_query <- GET_SQL_QUERY(PROJECT_PATH,
+                                   FILE_NAME = "File.SQL",
                                    DEBUG = TRUE)
       
       if(DEBUG) message("GetSqlData: Pull data from database  \n")    
